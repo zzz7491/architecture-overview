@@ -1,2 +1,24 @@
-# architecture-overview
-Repository with architecture diagrams and documentation
+# Architecture Overview · 架构总览
+
+现代 Web 应用的通用架构总览：一张图看清从用户到边缘、网关、服务、数据与后台任务的完整链路，作为架构设计与评审时的参考基线。
+
+## 内容
+
+- [`ARCHITECTURE.md`](./ARCHITECTURE.md)：Mermaid 架构图 + 组件说明。
+
+架构链路概要：
+
+```
+终端用户 → 浏览器 → CDN / 边缘缓存 → 负载均衡 → API 网关
+  ├─ 应用服务 ─┬─ 认证服务
+  │            ├─ 主数据库 / Redis 缓存
+  │            ├─ 消息队列 → 后台 Worker → 对象存储
+  │            └─ 监控与日志
+  └─ 管理服务 ─── 主数据库 / 监控与日志
+```
+
+## 用途
+
+- 新项目做架构设计时的对照基线；
+- 评审现有系统时核对组件是否齐全（缓存、队列、监控、对象存储常是遗漏项）；
+- 图中为通用形态，具体项目按规模删减，不必照搬全套。
